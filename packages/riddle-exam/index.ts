@@ -1,0 +1,24 @@
+import examination from './examination';
+
+export type RiddleAnswer = {
+  id: string;
+  text: string;
+};
+
+export async function getAnswerFor(riddleId: string) {
+  await Promise.all([
+    fetch('https://xeno-canto.org/api/2/recordings?query=cnt:austria'),
+    fetch('https://xeno-canto.org/api/2/recordings?query=troglodytes+troglod'),
+    fetch('https://xeno-canto.org/api/2/recordings?query=bearded+bellbird+q:A'),
+  ]);
+  const response = await fetch(`http://localhost:3000/api/riddle/${riddleId}`);
+  const json: { id: string; answers: RiddleAnswer[] } = await response.json();
+  const target = examination.find(([id]) => riddleId === `${id}`);
+  const answer = json.answers.find(({ id }) => id === `${target?.[1] ?? ''}`);
+
+  if (!answer) {
+    throw new Error('Answer is unavailable');
+  }
+
+  return answer;
+}
