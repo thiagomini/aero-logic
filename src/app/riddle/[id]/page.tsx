@@ -2,6 +2,9 @@ import { Riddle } from '../../domain/RiddleService';
 import {
   useRetrieveRiddle
 } from './useRetrieveRiddle';
+import {
+  RiddleResolution
+} from './RiddleResolution';
 
 export default async function RiddlePage({ params }: {
   params: Promise<{ id: string }>
@@ -13,8 +16,6 @@ export default async function RiddlePage({ params }: {
 
   return <div>
     <p>{riddle.contents}</p>
-    <ul>
-      {riddle.answers.map(answer => <li key={answer.id}>{answer.text}</li>)}
-    </ul>
+    <RiddleResolution riddle={riddle}/>
   </div>
 }
