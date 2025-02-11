@@ -22,7 +22,6 @@ describe('Page view model', () => {
         currentTime: Date;
         expectedInterval: string;
       }) => {
-        new Date().getHours();
         // Act
         const result = createPageViewModel(currentTime);
 
