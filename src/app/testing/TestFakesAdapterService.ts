@@ -3,19 +3,24 @@ import { type ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapte
 export type ThrowableAdapter<T> = {
   body: T;
   statusCode: number;
-}
+};
 
 function getTestFake(adapterName: string, fakes: Map<string, unknown> | null) {
   const fake = fakes?.get(`test-fake-${adapterName}`) as string;
 
   if (!fake) {
-    throw new Error(`Missing test fake for "${adapterName}"`);
+    throw new Error(
+      `Missing test fake for "${adapterName}" Make sure you injected a fake for this adapter in your test.`
+    );
   }
 
   return JSON.parse(fake);
 }
 
-export function settleFakeStub<T>(adapterName: string, fakes: Map<string, unknown> | null): Promise<T> {
+export function settleFakeStub<T>(
+  adapterName: string,
+  fakes: Map<string, unknown> | null
+): Promise<T> {
   const fake = getTestFake(adapterName, fakes) as ThrowableAdapter<T>;
 
   if (`${fake.statusCode}`.startsWith('2')) {
