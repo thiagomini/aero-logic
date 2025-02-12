@@ -4,7 +4,7 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ riddle: string }> }
 ) {
-  const riddleId = (await params).riddle
+  const riddleId = (await params).riddle;
   const { riddles} = db;
   const target = riddles.find(({ id }) => id === riddleId);
 

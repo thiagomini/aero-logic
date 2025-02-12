@@ -23,7 +23,7 @@ function getState(selectedAnswer: Answer | undefined , correctAnswer: Answer | u
 export function createRiddleResolutionViewModel(
   riddle: Riddle, selectedAnswer?: Answer, correctAnswer?: Answer
 ) {
-  let state = getState(selectedAnswer, correctAnswer);
+  const state = getState(selectedAnswer, correctAnswer);
 
   return {
     state,
@@ -33,19 +33,19 @@ export function createRiddleResolutionViewModel(
         return {...answer, resolution: undefined};
       }
 
-      const isCorrectAnswer = answer.id === correctAnswer?.id
+      const isCorrectAnswer = answer.id === correctAnswer?.id;
 
       if (isCorrectAnswer) {
         return {
           ...answer,
           resolution: 'green-300'
-        }
+        };
       }
 
       return {
         ...answer,
         resolution: 'red-300'
-      }
+      };
     }),
   };
 }
