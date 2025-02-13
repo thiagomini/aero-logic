@@ -22,6 +22,7 @@ export const RandomRiddleEntryControl = () => {
     <button
       data-test={id ? 'random-riddle-control' : undefined}
       onClick={handleClick}
+      className="flex items-center gap-2 px-4 py-2 text-lg font-medium text-gray-900 border-radius-md bg-blue-100 rounded-full"
     >
       Resolve random riddle
     </button>

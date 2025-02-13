@@ -7,7 +7,9 @@ export default function Home() {
   return (
     <main className="text-xl">
       <div data-test="metadata">
-        <p>Work Interval: {model.metadata.workInterval}</p>
+        <p className="text-xl font-medium text-gray-900">
+          Work Interval: {model.metadata.workInterval}
+        </p>
         <RandomRiddleEntryControl />
       </div>
     </main>
