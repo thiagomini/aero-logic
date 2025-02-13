@@ -1,9 +1,6 @@
-import {
-  useRetrieveRandomRiddle
-} from '../useRetrieveRandomRiddle';
-import {
-  useRetrieveRiddle
-} from '../riddle/[id]/useRetrieveRiddle';
+import { useRetrieveRandomRiddle } from '../useRetrieveRandomRiddle';
+import { useRetrieveRiddle } from '../riddle/[id]/useRetrieveRiddle';
+import { useRetrieveRiddleAnswer } from '../riddle/[id]/useRetrieveRiddleAnswer';
 
 describe('Random riddle', () => {
   it('see random riddle', () => {
@@ -15,15 +12,21 @@ describe('Random riddle', () => {
     });
     cy.injectFakeAdapter(useRetrieveRiddle, {
       body: {
-        id: "1",
-        contents: "What is the most busy air traffic times?"  ,
+        id: '1',
+        contents: 'What is the most busy air traffic times?',
         answers: [
-          { id: '1', text: 'Early morning'},
-          { id: '2', text: 'Late night'},
-          { id: '3', text: 'None of the above'},
+          { id: '1', text: 'Early morning' },
+          { id: '2', text: 'Late night' },
+          { id: '3', text: 'None of the above' },
         ],
-      }
-    })
+      },
+    });
+    cy.injectFakeAdapter(useRetrieveRiddleAnswer, {
+      body: {
+        id: '1',
+        text: 'Early morning',
+      },
+    });
 
     cy.visit('/');
 
@@ -31,12 +34,13 @@ describe('Random riddle', () => {
 
     cy.get('[data-test="random-riddle-control"]').click();
 
-
-    cy.contains('What is the most busy air traffic times?').should('be.visible');
+    cy.contains('What is the most busy air traffic times?').should(
+      'be.visible'
+    );
     cy.contains('Early morning').should('be.visible');
     cy.contains('Late night').should('be.visible');
     cy.contains('None of the above').should('be.visible');
   });
 
-  it.skip('resolves a riddle')
+  it.skip('resolves a riddle');
 });

@@ -23,7 +23,7 @@ export function createClientAdapter<T, U = never>(options: AdapterFactoryOptions
 
     return {
       getData: options.callback,
-    }
+    };
   };
 
   useClientAdapter._name = options.name;

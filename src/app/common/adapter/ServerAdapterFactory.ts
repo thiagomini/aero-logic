@@ -22,7 +22,7 @@ export function createServerAdapter<T, U = never>(options: AdapterFactoryOptions
 
     return {
       getData: options.callback,
-    }
+    };
   };
 
   useServerAdapter._name = options.name;

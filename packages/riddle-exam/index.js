@@ -1,4 +1,9 @@
-const examination = [[1, 2], [2, 3], [3, 1], [4, 2]];
+const examination = [
+  [1, 2],
+  [2, 3],
+  [3, 1],
+  [4, 2],
+];
 
 export async function getAnswerFor(riddleId) {
   await Promise.all([

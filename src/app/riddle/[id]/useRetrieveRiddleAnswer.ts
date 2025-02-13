@@ -1,4 +1,4 @@
-import { getAnswerFor } from 'riddle-exam'
+import { getAnswerFor } from 'riddle-exam';
 import {
   createClientAdapter
 } from '../../common/adapter/ClientAdapterFactory';
@@ -12,4 +12,4 @@ export const useRetrieveRiddleAnswer = createClientAdapter<Answer, Pick<Riddle, 
   callback: (input) => {
     return getAnswerFor(input!.id);
   }
-})
+});

@@ -1,9 +1,5 @@
-import {
-  createPageViewModel
-} from './pageViewModelService';
-import {
-  RandomRiddleEntryControl
-} from './RandomRiddleEntryControl';
+import { createPageViewModel } from './pageViewModelService';
+import { RandomRiddleEntryControl } from './RandomRiddleEntryControl';
 
 export default function Home() {
   const model = createPageViewModel(new Date());
