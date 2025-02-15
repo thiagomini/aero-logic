@@ -19,7 +19,9 @@ export const RiddleResolution = ({ riddle }: Props) => {
     correctAnswer
   );
   const handleClick = async (answer: Answer) => {
-    setSelected(answer);
+    if (selected === undefined) {
+      setSelected(answer);
+    }
   };
 
   useEffect(() => {

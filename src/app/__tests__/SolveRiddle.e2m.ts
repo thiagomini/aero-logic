@@ -61,10 +61,20 @@ describe('Solve Riddle', () => {
 
     // Act
     // The user clicks on the correct answer
-    cy.get('[data-testid=riddle-option]').contains('The wrong Answer').click();
+    cy.get('[data-testid=riddle-option]')
+      .contains('The wrong Answer')
+      .as('selectedOption')
+      .click();
 
     // Assert
-    // We display a successful message
+    // We display an error message
+    cy.findByTestId('riddle-resolution')
+      .should('be.visible')
+      .should('contain', 'Wrong answer');
+
+    // Cannot select a different answer
+    cy.get('[data-testid=riddle-option]').contains('The Right Answer!').click();
+
     cy.findByTestId('riddle-resolution')
       .should('be.visible')
       .should('contain', 'Wrong answer');
