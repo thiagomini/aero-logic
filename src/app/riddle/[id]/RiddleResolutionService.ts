@@ -1,9 +1,9 @@
-import {
-  Answer,
-  Riddle,
-} from '../../domain/RiddleService';
+import { Answer, Riddle } from '../../domain/RiddleService';
 
-function getState(selectedAnswer: Answer | undefined , correctAnswer: Answer | undefined) {
+function getState(
+  selectedAnswer: Answer | undefined,
+  correctAnswer: Answer | undefined
+) {
   let state: string | undefined = 'FAILED';
 
   if (!selectedAnswer) {
@@ -21,16 +21,18 @@ function getState(selectedAnswer: Answer | undefined , correctAnswer: Answer | u
 }
 
 export function createRiddleResolutionViewModel(
-  riddle: Riddle, selectedAnswer?: Answer, correctAnswer?: Answer
+  riddle: Riddle,
+  selectedAnswer?: Answer,
+  correctAnswer?: Answer
 ) {
   const state = getState(selectedAnswer, correctAnswer);
 
   return {
     state,
-    answers: riddle.answers.map(answer => {
+    answers: riddle.answers.map((answer) => {
       const isAnswerSelected = selectedAnswer?.id === answer.id;
       if (!isAnswerSelected) {
-        return {...answer, resolution: undefined};
+        return { ...answer, resolution: undefined };
       }
 
       const isCorrectAnswer = answer.id === correctAnswer?.id;
@@ -38,13 +40,13 @@ export function createRiddleResolutionViewModel(
       if (isCorrectAnswer) {
         return {
           ...answer,
-          resolution: 'green-300'
+          resolution: 'bg-green-300',
         };
       }
 
       return {
         ...answer,
-        resolution: 'red-300'
+        resolution: 'bg-red-300',
       };
     }),
   };
